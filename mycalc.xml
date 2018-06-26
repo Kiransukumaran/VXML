@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml xmlns="http://www.w3.org/2001/vxml"
+      version="2.1"
+      xml:lang="en-US"
+      xml:base="https://studio.tellme.com/vxml-tutorial/">
+      
+   <script>
+      <![CDATA[
+         var addition = false;
+         var subtraction = false;
+         var multiplication = false;
+         var division = false;
+      ]]>
+   </script>
+
+<form id="main">
+      <field name="main_selection">
+         <prompt>
+            Welcome to my Calculator
+            Say Addition or press 1.
+            Say Subtraction or press 2.
+            Say Multiplication  or press 3.
+            Say Division or press 4.
+         </prompt>
+         <grammar version="1.0" root="top">
+            <rule id="top">
+               <one-of>
+                  <item>addition</item>
+                  <item>subtraction</item>
+                  <item>multiplication</item>
+                  <item>division</item>
+               </one-of>
+            </rule>
+         </grammar>
+         <grammar mode="dtmf" version="1.0" root="top">
+          <rule id="top">
+            <one-of>
+              <item>1</item>
+              <item>2</item>
+              <item>3</item>
+              <item>4</item>
+            </one-of>
+          </rule>
+        </grammar>
+
+         <catch event="noinput nomatch">
+            Sorry. Didn't get that. Please try again.
+            <reprompt/>
+         </catch>
+
+         <filled>
+            <script>
+               <![CDATA[
+                  var next = "";
+                  switch (main_selection){
+
+                  case "addition" :
+                    next = "#add";
+                    break;
+
+                  case "1" :next = "#add";break;
+                    
+
+                  case "subtraction" :
+                    next = "#sub";
+                    break;
+                    
+                  case "2" :next = "#sub";break;
+                    
+
+                  case "multiplication" :
+                    next = "#mul";
+                    break;
+                    
+                  case "3" :next = "#mul";break;
+
+                  case "division" :
+                    next = "#div";
+                    break;
+
+                  case "4" :next = "#div"; break; 
+                    
+
+                  default:
+                    next = "#error";
+                   break;
+                 }
+               ]]>
+            </script>
+            <goto expr="next"/>
+         </filled>
+      </field>
+   </form>
+    <var name="result"/>
+
+   <form id ="add">
+      <field name="first" type="number">
+         <prompt>
+            Enter the first number.
+         </prompt>
+         <catch event="noinput nomatch">
+            Sorry. Didn't get that. Please try again.
+            <reprompt/>
+         </catch>
+      </field>
+      <field name="second" type="number">
+         <prompt>
+            Enter the second number.
+         </prompt>
+         <catch event="noinput nomatch">
+            Sorry. Didn't get that. Please try again.
+            <reprompt/>
+         </catch>
+      </field>
+
+        <block>
+            <assign name="result" expr="Number(first) + Number(second)"/>
+            <prompt>
+                The result is <value expr="first"/> plus <value expr="second"/> equals <value expr="result"/>. Thank you for using my calculator. 
+            </prompt>
+        </block>
+      
+   </form>
+   <form id ="sub">
+      <field name="first" type="number">
+         <prompt>
+            Enter the first number.
+         </prompt>
+         <catch event="noinput nomatch">
+            Sorry. Didn't get that. Please try again.
+            <reprompt/>
+         </catch>
+      </field>
+      <field name="second" type="number">
+         <prompt>
+            Enter the second number.
+         </prompt>
+         <catch event="noinput nomatch">
+            Sorry. Didn't get that. Please try again.
+            <reprompt/>
+         </catch>
+      </field>
+
+        <block>
+            <assign name="result" expr="Number(first) - Number(second)"/>
+            <prompt>
+                The result is <value expr="first"/> minus <value expr="second"/> equals <value expr="result"/>. Thank you for using my calculator. 
+            </prompt>
+        </block>
+      
+   </form>
+   <form id ="mul">
+      <field name="first" type="number">
+         <prompt>
+            Enter the first number.
+         </prompt>
+         <catch event="noinput nomatch">
+            Sorry. Didn't get that. Please try again.
+            <reprompt/>
+         </catch>
+      </field>
+      <field name="second" type="number">
+         <prompt>
+            Enter the second number.
+         </prompt>
+         <catch event="noinput nomatch">
+            Sorry. Didn't get that. Please try again.
+            <reprompt/>
+         </catch>
+      </field>
+
+        <block>
+            <assign name="result" expr="Number(first) * Number(second)"/>
+            <prompt>
+                The result is <value expr="first"/> multiplied by <value expr="second"/> equals <value expr="result"/> . Thank you for using my calculator.
+            </prompt>
+        </block>
+      
+   </form>
+   <form id ="div">
+      <field name="first" type="number">
+         <prompt>
+            Enter the first number.
+         </prompt>
+         <catch event="noinput nomatch">
+            Sorry. Didn't get that. Please try again.
+            <reprompt/>
+         </catch>
+      </field>
+      <field name="second" type="number">
+         <prompt>
+            Enter the second number.
+         </prompt>
+         <catch event="noinput nomatch">
+            Sorry. Didn't get that. Please try again.
+            <reprompt/>
+         </catch>
+      </field>
+
+        <block>
+            <assign name="result" expr="Number(first) / Number(second)"/>
+            <prompt>
+                The result is <value expr="first"/> divided by <value expr="second"/> equals <value expr="result"/>. Thank you for using my calculator.
+            </prompt>
+        </block>
+      
+   </form>
+</vxml>

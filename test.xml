@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml xmlns="http://www.w3.org/2001/vxml" version="2.1">
+<form><field name="greeting">
+      <prompt>
+         Please say hello
+      </prompt><grammar mode="voice" xml:lang="en-US" version="1.0" root="top">
+         <rule id="top">
+            <one-of><item>hi</item><item>hello</item></one-of></rule></grammar><filled>
+         Thank you. You said <value expr="greeting"/>
+      </filled>
+  </field>
+</form>
+</vxml>
